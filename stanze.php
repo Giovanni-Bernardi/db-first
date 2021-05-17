@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,28 +9,30 @@
     <!-- css -->
     <link rel="stylesheet" href="css/style.css">
 
-    
+
 </head>
+
 <body>
     <div class="container">
-    
+
         <?php
 
-            require_once "data.php";
-            $id = $_GET['id'];
-            $conn = getConnection();
-            $sql = getDetail();
-            
-            $stmt = $conn -> prepare($sql);
-            $stmt -> bind_param('i', $id);
-            $stmt -> execute();
-            $stmt -> bind_result($floor, $beds);
-            $stmt -> fetch();
+        require_once "data.php";
+        $id = $_GET['id'];
+        $conn = getConnection();
+        $sql = getDetail();
 
-            echo '<p>' . 'Piano: ' . $floor . '</p>' . '<p>' . 'Letti: ' . $beds . '</p>';
-            closeConnection($conn, $stmt);
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param('i', $id);
+        $stmt->execute();
+        $stmt->bind_result($floor, $beds);
+        $stmt->fetch();
+
+        echo '<p>' . 'Piano: ' . $floor . '</p>' . '<p>' . 'Letti: ' . $beds . '</p>';
+        closeConnection($conn, $stmt);
         ?>
 
     </div>
 </body>
+
 </html>
